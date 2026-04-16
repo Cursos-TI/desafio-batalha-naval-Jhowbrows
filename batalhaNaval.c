@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+
+#define NAVIO 3 //Criação de constante para o navio
+#define TABULEIRO 10 //Crição de constante para o tabuleiro
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
@@ -9,24 +12,36 @@ int main() {
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     //Variaveis de linha do cabeçalho e do tabuleiro
     char linha[10] = {'A','B','C','D','E','F','G','H','I','J'};   
-    int tabuleiro[10][10] = {0};
+    int tabuleiro[10][10] = {0}; //Matriz do tabuleiro 10x10
 
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
     
     //variaveis dos navios
-    int navio[3] = {3,3,3};
-    int navio2[3] = {3,3,3};
+    int navio[NAVIO] = {3,3,3};
+    int navio2[NAVIO] = {3,3,3};
+    int navio3[NAVIO] = {3,3,3};
+    int navio4[NAVIO] = {3,3,3};
 
     //Lógica da exibição dos navios no tabuleiro
     //exibição do navio1 na horizontal
-    for (int i = 0; i < 3; i++) {
-        tabuleiro[2][3 + i] = navio[i]; //navio horizontal
+    for (int i = 0; i < NAVIO; i++) {
+        tabuleiro[2][4 + i] = navio[i]; //navio horizontal
     }
 
     //Exibição do navio na Vertical
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < NAVIO; i++) {
         tabuleiro[5 + i][7] = navio2[i]; //navio vertical
+    }
+
+    //Lógica de Exibição do navio na diagonal principal
+    for(int i = 0; i < NAVIO; i++) {
+        tabuleiro[0 + i][0 + i] = navio3[i];
+    }
+
+    //lógica de exibição do navio na diagonal secundaria
+    for(int i = 0; i < NAVIO; i++) {
+        tabuleiro[7 - i][1 + i] = navio4[i];
     }
     
     //Exibição do tabuleiro e Criação da lógica de exbição do mesmo
@@ -36,7 +51,7 @@ int main() {
     printf("   ");
 
     //Loop exibindo cordenadas pelo cabeçalho (colunas) atraves das letras A-J
-    for(int i = 0; i < 10; i++) {
+    for(int i = 0; i < TABULEIRO; i++) {
         printf("%c ", linha[i]);
     }
 
@@ -44,9 +59,9 @@ int main() {
     printf("\n");
 
     //Loop exibindo o tabuleiro
-    for(int i = 0; i < 10; i++) {
+    for(int i = 0; i < TABULEIRO; i++) {
         printf("%2d ", i + 1); //Exibição das cordenadas de linha com a numeração
-        for(int j = 0;j < 10; j++){
+        for(int j = 0;j < TABULEIRO; j++){
             printf("%d ", tabuleiro[i][j]); //Loop de exibição do tabuleiro com colunas repetindo 10x a cada linha
         };
         printf("\n"); //Quebra de linha a cada coluna feita 10x por loop
